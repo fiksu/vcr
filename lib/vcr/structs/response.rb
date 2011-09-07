@@ -13,7 +13,13 @@ module VCR
     end
 
     def update_content_length_header
-      headers['content-length'] &&= [body.length.to_s]
+      if body
+        len = body.length().to_s()
+      else
+        len = "0"
+      end
+
+      headers['content-length'] &&= [len]
     end
   end
 end
